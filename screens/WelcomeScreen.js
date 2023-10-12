@@ -23,13 +23,13 @@ const WelcomeScreen = () => {
       </View>
       <View className="space-y-4">
         <TouchableOpacity onPress={() => navigation.navigate('Login')}
-          className="py-3 mx-7 rounded-xl" style={{backgroundColor: '#81D2C7'}}>
+          className="py-3 mx-7 rounded-2xl" style={{backgroundColor: '#81D2C7'}}>
           <Text className="text-xl font-bold text-center text-black">
             Login
           </Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('SignUp')}
-          className="py-3 mx-7 rounded-xl" style={{backgroundColor: '#81D2C7'}}>
+          className="py-3 mx-7 rounded-2xl" style={{backgroundColor: '#81D2C7'}}>
           <Text className="text-xl font-bold text-center text-black">
             Sign Up
           </Text>

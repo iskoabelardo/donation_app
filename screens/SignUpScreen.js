@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native'
 import { ChevronLeftIcon } from 'react-native-heroicons/solid'
 
-export default function LoginScreen() {
+export default function SignUpScreen() {
     const navigation = useNavigation();
 
     useLayoutEffect(() => {
@@ -25,27 +25,44 @@ export default function LoginScreen() {
                 </View>
                 <View className="flex-row justify-center">
                     <Image source={require("../assets/clothing-donation.png")}
-                            style={{width:350, height: 350}}/>
+                            style={{width:100, height: 100}}/>
                 </View>
             </SafeAreaView>
+            <View className="flex-row justify-start ml-5 mb-1">
+                <Text className="text-black font-bold text-2xl text-right">
+                    Create new account
+                </Text>
+            </View>
             <View className="flex-1 bg-white px-8 pt-8"
                 style={{borderTopLeftRadius: 50, borderTopRightRadius: 50}}>
                 <View className="form space-y-2">
-                    <Text className="text-gray-700 ml-4"> Email Address </Text>
+                    <Text className="text-gray-700 ml-4"> Name </Text>
                     <TextInput 
                     className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3" 
-                    placeholder='Enter email'/>
+                    placeholder='Enter full name'/>
+                    <Text className="text-gray-700 ml-4"> Email </Text>
+                    <TextInput 
+                        className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3" 
+                        secureTextEntry
+                        placeholder='Enter email'/>
+                    <Text className="text-gray-700 ml-4"> Mobile Number </Text>
+                    <TextInput 
+                        className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3" 
+                        secureTextEntry
+                        placeholder='Enter mobile number'/>
                     <Text className="text-gray-700 ml-4"> Password </Text>
                     <TextInput 
                         className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3" 
                         secureTextEntry
                         placeholder='Enter password'/>
+                    <Text className="text-gray-700 ml-4"> Retype Password </Text>
+                    <TextInput 
+                        className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3" 
+                        secureTextEntry
+                        placeholder='Retype password'/>
                 </View>
-                <TouchableOpacity className="flex items-end mb-5">
-                    <Text className="text-gray-700">Forgot Password?</Text>
-                </TouchableOpacity>
-                <TouchableOpacity className="mt-5 py-3 rounded-xl" style={{backgroundColor: '#81D2C7'}}>
-                    <Text className="text-gray-700 font-xl font-bold text-center"> Login </Text>
+                <TouchableOpacity className="py-3 rounded-xl mt-5" style={{backgroundColor: '#81D2C7'}}>
+                    <Text className="text-gray-700 font-xl font-bold text-center"> Sign up </Text>
                 </TouchableOpacity>
             </View>
         </View>
