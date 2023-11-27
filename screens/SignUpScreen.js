@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native'
+import { View, Text, TouchableOpacity, Image, TextInput, ScrollView } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native'
@@ -14,7 +14,7 @@ export default function SignUpScreen() {
       }, []);
 
     return (
-        <View className="flex-1 bg-white" style={{backgroundColor: '#A6D267'}}>
+        <ScrollView className="flex-1 bg-white" style={{backgroundColor: '#3EB489'}}>
             <SafeAreaView className="flex">
                 <View className="flex-row justify-start">
                     <TouchableOpacity 
@@ -25,7 +25,7 @@ export default function SignUpScreen() {
                 </View>
                 <View className="flex-row justify-center">
                     <Image source={require("../assets/clothing-donation.png")}
-                            style={{width:100, height: 100}}/>
+                            style={{width:150, height: 150}}/>
                 </View>
             </SafeAreaView>
             <View className="flex-row justify-start ml-5 mb-1">
@@ -33,38 +33,43 @@ export default function SignUpScreen() {
                     Create new account
                 </Text>
             </View>
-            <View className="flex-1 bg-white px-8 pt-8"
+            <View className="flex-1 bg-white px-8 pt-8 pb-8"
                 style={{borderTopLeftRadius: 50, borderTopRightRadius: 50}}>
-                <View className="form space-y-2">
-                    <Text className="text-gray-700 ml-4"> Name </Text>
+                <View className="form space-y-3">
+                    <Text className="text-gray-700 ml-4"> Full Name </Text>
                     <TextInput 
                     className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3" 
-                    placeholder='Enter full name'/>
+                    //placeholder='Enter full name'
+                    />
                     <Text className="text-gray-700 ml-4"> Email </Text>
                     <TextInput 
                         className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3" 
                         secureTextEntry
-                        placeholder='Enter email'/>
+                        //placeholder='Enter email'
+                        />
                     <Text className="text-gray-700 ml-4"> Mobile Number </Text>
                     <TextInput 
                         className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3" 
                         secureTextEntry
-                        placeholder='Enter mobile number'/>
+                        //placeholder='Enter mobile number'
+                        />
                     <Text className="text-gray-700 ml-4"> Password </Text>
                     <TextInput 
                         className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3" 
                         secureTextEntry
-                        placeholder='Enter password'/>
+                        //placeholder='Enter password'
+                        />
                     <Text className="text-gray-700 ml-4"> Retype Password </Text>
                     <TextInput 
                         className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3" 
                         secureTextEntry
-                        placeholder='Retype password'/>
+                        //placeholder='Retype password'
+                        />
                 </View>
-                <TouchableOpacity className="py-3 rounded-xl mt-5" style={{backgroundColor: '#81D2C7'}}>
+                <TouchableOpacity className="py-3 rounded-xl mt-5 mb-5" style={{backgroundColor: '#59F0E0'}}>
                     <Text className="text-gray-700 font-xl font-bold text-center"> Sign up </Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </ScrollView>
     )
 }

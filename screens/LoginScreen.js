@@ -14,7 +14,7 @@ export default function LoginScreen() {
       }, []);
 
     return (
-        <View className="flex-1 bg-white" style={{backgroundColor: '#A6D267'}}>
+        <View className="flex-1 bg-white" style={{backgroundColor: '#3EB489'}}>
             <SafeAreaView className="flex">
                 <View className="flex-row justify-start">
                     <TouchableOpacity 
@@ -25,7 +25,7 @@ export default function LoginScreen() {
                 </View>
                 <View className="flex-row justify-center">
                     <Image source={require("../assets/clothing-donation.png")}
-                            style={{width:350, height: 350}}/>
+                            style={{width:250, height: 250}}/>
                 </View>
             </SafeAreaView>
             <View className="flex-1 bg-white px-8 pt-8"
@@ -33,18 +33,21 @@ export default function LoginScreen() {
                 <View className="form space-y-2">
                     <Text className="text-gray-700 ml-4"> Email Address </Text>
                     <TextInput 
-                    className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3" 
-                    placeholder='Enter email'/>
+                    className="p-4 bg-gray-200 text-gray-700 rounded-2xl mb-3" 
+                    //placeholder='Enter email'
+                    />
                     <Text className="text-gray-700 ml-4"> Password </Text>
                     <TextInput 
-                        className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3" 
+                        className="p-4 bg-gray-200 text-gray-700 rounded-2xl mb-3" 
                         secureTextEntry
-                        placeholder='Enter password'/>
+                        //placeholder='Enter password'
+                    />
                 </View>
                 <TouchableOpacity className="flex items-end mb-5">
                     <Text className="text-gray-700">Forgot Password?</Text>
                 </TouchableOpacity>
-                <TouchableOpacity className="mt-5 py-3 rounded-xl" style={{backgroundColor: '#81D2C7'}}>
+                <TouchableOpacity onPress={() => navigation.navigate('TabScreen')}
+                    className="mt-5 py-3 rounded-xl" style={{backgroundColor: '#59F0E0'}}>
                     <Text className="text-gray-700 font-xl font-bold text-center"> Login </Text>
                 </TouchableOpacity>
             </View>
