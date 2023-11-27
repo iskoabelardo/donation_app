@@ -25,7 +25,7 @@ export default function App() {
             component={TabScreen} 
             options={{ headerShown: false }}
           />
-          <Stack.Screen name="Donation" component={DonationScreen}/>
+          {/* <Stack.Screen name="Donation" component={DonationScreen}/> */}
           <Stack.Screen name="Notif" component={NotificationScreen}/>
         </Stack.Navigator>
       </TailwindProvider>

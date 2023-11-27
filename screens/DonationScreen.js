@@ -75,7 +75,7 @@ export default function DonationScreen() {
                             value={tags}
                             onChangeText={setTags}
                         />
-                        <TouchableOpacity className="mt-7 py-3 rounded-xl" style={{backgroundColor: '#59F0E0'}}>
+                        <TouchableOpacity className="mt-2 py-3 rounded-xl" style={{backgroundColor: '#59F0E0'}}>
                             <Text className="text-xl font-bold text-center text-black">Submit</Text>
                         </TouchableOpacity>
                     </View>

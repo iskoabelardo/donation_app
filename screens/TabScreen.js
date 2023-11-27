@@ -3,9 +3,16 @@ import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { HomeIcon, UserIcon} from 'react-native-heroicons/solid'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { useNavigation } from '@react-navigation/native'
 import Home from '../tabs/Home';
 import Profile from '../tabs/Profile';
-import { useNavigation } from '@react-navigation/native'
+import DonationScreen from '../screens/DonationScreen';
+import NotificationScreen from '../screens/NotificationScreen';
+import OrgOptions from '../screens/OrganizationOptions';
+import AngatBuhay from './orgscreens/AngatBuhayScreen';
+import SegundaMana from './orgscreens/SegundaMana';
+import RedCross from './orgscreens/PhRedCross';
+
 // Import other screens here if needed
 
 const Tab = createBottomTabNavigator();
@@ -17,14 +24,55 @@ const Tabs = () => {
         tabBarActiveTintColor: '#e91e63',
         tabBarShowLabel: false,
         headerShown: false, 
-        tabBarStyle: { height: 60},
+        tabBarStyle: { height: 50},
       }}>
-      <Tab.Screen name="Home" component={Home} options={{
+      <Tab.Screen 
+        name="Home" 
+        component={Home} 
+        options={{
         tabBarIcon: ({ focused }) => (
           <HomeIcon size={30}color={focused ? '#75BAA4' : '#C3C5C8'} /> 
         ),
       }}/>
-      <Tab.Screen name="Profile" component={Profile} options={{
+      <Tab.Screen 
+        name="Donation" 
+        component={DonationScreen} 
+        options={{
+          tabBarButton: () => <View/> // Hides the tab bar icon for this tab
+        }}/>
+      <Tab.Screen 
+        name="Notif" 
+        component={NotificationScreen}
+        options={{
+          tabBarButton: () => <View/> // Hides the tab bar icon for this tab
+        }}/>
+      <Tab.Screen 
+        name="OrganizationOptions" 
+        component={OrgOptions}
+        options={{
+          tabBarButton: () => <View/> // Hides the tab bar icon for this tab
+        }}/>
+      <Tab.Screen 
+        name="AngatBuhay" 
+        component={AngatBuhay}
+        options={{
+          tabBarButton: () => <View/> // Hides the tab bar icon for this tab
+        }}/>
+      <Tab.Screen 
+        name="SegundaMana" 
+        component={SegundaMana}
+        options={{
+          tabBarButton: () => <View/> // Hides the tab bar icon for this tab
+        }}/>
+      <Tab.Screen 
+        name="RedCross" 
+        component={RedCross}
+        options={{
+          tabBarButton: () => <View/> // Hides the tab bar icon for this tab
+        }}/>
+      <Tab.Screen name="Profile" 
+        component={Profile} 
+        options={{
         tabBarIcon: ({ focused }) => (
           <UserIcon size={30}color={focused ? '#75BAA4' : '#C3C5C8'} /> 
         ),

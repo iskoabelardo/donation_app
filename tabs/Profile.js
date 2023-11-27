@@ -19,7 +19,9 @@ const Profile = () => {
           </View>
           {/* Icons */}
           <View className="flex-row">
-            <TouchableOpacity onPress={() => navigation.goBack()} className="p-2">
+            <TouchableOpacity 
+              onPress={() => navigation.navigate('Notif')}
+              className="p-2">
               <BellIcon size={30} color="black" />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => {/* Navigation action for settings */}} className="p-2">
