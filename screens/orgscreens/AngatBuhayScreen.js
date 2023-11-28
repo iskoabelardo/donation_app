@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, FlatList, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import React, { useLayoutEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
@@ -23,18 +23,23 @@ const AngatBuhay = () => {
                         </TouchableOpacity>
                     </View>
                     <View className="flex-1 flex justify-center items-center px-4 py-4">
-                        <Text className="text-3xl font-bold text-black text-center">Angat Buhay</Text>
-                        <Text className="text-black mt-2 text-justify">
+                        <Text className="text-3xl font-bold text-black text-center mt-5 mb-5">Angat Buhay</Text>
+                        <Image 
+                            source={require("../orgscreens/Angat_Buhay_logo1.png")} // Replace with your image URL
+                            className="w-36 h-20" // Tailwind CSS styling for width and height
+                            resizeMode="contain" // or "cover", depending on your preference
+                        />
+                        <Text className="text-black mt-3 text-justify">
                             Angat Buhay is a non-government organization that inspires hope and bayanihan by harnessing the energies of partners, volunteers, and supporters to empower Filipino communities, especially the marginalized.
                         </Text>
-                        <Text className="text-black mt-2 text-justify">
+                        <Text className="text-black mt-3 text-justify">
                             Following the people's campaign of former Vice President Leni Robredo in 2022, Angat Buhay traces its roots as a government program under the Office of the Vice President of the Philippines that had several successful initiatives and projects.
                         </Text>
                     </View>
                 {/* Donate button */}
-                <View className="mt-2">
+                <View className="mt-8">
                     <TouchableOpacity 
-                    onPress={() => navigation.navigate('OrganizationOptions')}
+                    onPress={() => navigation.navigate('Donation')}
                     className="py-3 mx-3 rounded-xl" style={{backgroundColor: '#38517E'}}>
                     <Text className="text-xl font-bold text-center text-white">
                         Donate Now

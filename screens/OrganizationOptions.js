@@ -70,7 +70,7 @@ const OrgOptions = () => {
                     <ChevronLeftIcon size="20" color="black"/>
                 </TouchableOpacity>
             </View>
-            <Text className="px-4 mt-5 mb-2 text-3xl font-bold"> Charity Organizations </Text>
+            <Text className="px-4 mt-5 mb-2 text-3xl font-bold text-center"> Charity Organizations </Text>
             <FlatList
                 data={organizations}
                 renderItem={renderItem}

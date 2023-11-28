@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { ChevronLeftIcon, CameraIcon } from 'react-native-heroicons/solid';
 import { MagnifyingGlassIcon, ShoppingCartIcon } from 'react-native-heroicons/outline'
+import DropDownPicker, { DropDownPickerProps } from 'react-native-dropdown-picker';
 
 
 export default function DonationScreen() {
@@ -17,9 +18,43 @@ export default function DonationScreen() {
       const [itemName, setItemName] = useState("");
       const [itemDescription, setItemDescription] = useState("");
       const [location, setLocation] = useState("");
-      const [tags, setTags] = useState("");
+
+      const [tagOpen, tagIsOpen] = useState();
+      const [tagsValue, setTagsValue] = useState();
+
+      const [isOpen, setIsOpen] = useState();
+      const [currentValue, setCurrentValue] = useState();
+
+      const toggleTagDropdown = () => {
+        // If the tags dropdown is opened, close the delivery method dropdown
+        if (!tagOpen) setIsOpen(false);
+        tagIsOpen(!tagOpen);
+      };
+
+      const toggleDeliveryDropdown = () => {
+        // If the delivery method dropdown is opened, close the tags dropdown
+        if (!isOpen) tagIsOpen(false);
+        setIsOpen(!isOpen);
+      };
+
+      const tagsOptions = [
+        { label: 'Clothes', value: 'clothes' },
+        { label: 'Bag', value: 'bag' },
+        { label: 'Shoes', value: 'shoes' },
+        { label: 'Books', value: 'books' },
+        { label: 'Tech Equipment', value: 'tech_equipment' },
+        { label: 'Games', value: 'games' },
+        { label: 'Home Essentials', value: 'home_essentials' },
+        { label: 'Toiletries', value: 'toiletries' }
+      ];
+
+      const deliveryMode = [
+        {label: 'Pick Up', value: 'pickup'},
+        {label: 'Drop Off', value: 'dropoff'},
+      ]
+
       return (
-      <View className=" flex-1 relative bg-white" style={{backgroundColor: '#3EB489'}}>
+      <ScrollView className=" flex-1 relative bg-white" style={{backgroundColor: '#3EB489'}}>
         <SafeAreaView>
               <View className="flex-row justify-between">
                   <TouchableOpacity 
@@ -43,7 +78,7 @@ export default function DonationScreen() {
         </SafeAreaView>
           <KeyboardAvoidingView className="flex-1 p-4"
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-              <ScrollView>
+              <View>
                 <TouchableOpacity className="border-dashed border-2 border-gray-300 rounded-md p-12 flex items-center justify-center">
                     <CameraIcon size={30} color="gray" />
                     <Text className="text-gray-500 mt-2">Add a Photo</Text>
@@ -57,7 +92,7 @@ export default function DonationScreen() {
                             onChangeText={setItemName}
                         />
                         <TextInput 
-                            className="p-4 bg-gray-200 text-gray-700 rounded-2xl mb-3 h-24" 
+                            className="p-4 bg-gray-200 text-gray-700 rounded-2xl mb-3 h-20" 
                             placeholder="Item description"
                             value={itemDescription}
                             onChangeText={setItemDescription}
@@ -69,19 +104,35 @@ export default function DonationScreen() {
                             value={location}
                             onChangeText={setLocation}
                         />
-                        <TextInput 
+                        <DropDownPicker
                             className="p-4 bg-gray-200 text-gray-700 rounded-2xl mb-3"
-                            placeholder="Tags"
-                            value={tags}
-                            onChangeText={setTags}
+                            items={tagsOptions}
+                            open={tagOpen}
+                            setOpen={toggleTagDropdown}
+                            value={tagsValue}
+                            setValue={setTagsValue}
+                            maxHeight={200}
+                            autoScroll
+                            placeholder='Select a tag'
                         />
-                        <TouchableOpacity className="mt-2 py-3 rounded-xl" style={{backgroundColor: '#59F0E0'}}>
-                            <Text className="text-xl font-bold text-center text-black">Submit</Text>
+                        <DropDownPicker
+                          className="p-4 bg-gray-200 text-gray-700 rounded-2xl mb-3"
+                          items={deliveryMode} 
+                          open={isOpen}
+                          setOpen={toggleDeliveryDropdown}
+                          value={currentValue}
+                          setValue={(val) => setCurrentValue(val)}
+                          maxHeight={200}
+                          autoScroll
+                          placeholder='Select delivery method'
+                        />
+                        <TouchableOpacity className="mt-2 py-3 rounded-xl" style={{backgroundColor: '#38517E'}}>
+                            <Text className="text-xl font-bold text-center text-white">Submit</Text>
                         </TouchableOpacity>
                     </View>
                 </TouchableWithoutFeedback>
-            </ScrollView>
+            </View>
           </KeyboardAvoidingView>
-      </View>
+      </ScrollView>
     )
 }

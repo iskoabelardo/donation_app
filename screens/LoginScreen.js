@@ -14,7 +14,7 @@ export default function LoginScreen() {
       }, []);
 
     return (
-        <View className="flex-1 bg-white" style={{backgroundColor: '#3EB489'}}>
+        <View className="flex-1 bg-white" style={{backgroundColor: '#75BAA4'}}>
             <SafeAreaView className="flex">
                 <View className="flex-row justify-start">
                     <TouchableOpacity 
@@ -47,8 +47,8 @@ export default function LoginScreen() {
                     <Text className="text-gray-700">Forgot Password?</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('TabScreen')}
-                    className="mt-5 py-3 rounded-xl" style={{backgroundColor: '#59F0E0'}}>
-                    <Text className="text-gray-700 font-xl font-bold text-center"> Login </Text>
+                    className="mt-4 py-4 rounded-xl" style={{backgroundColor: '#38517E'}}>
+                    <Text className="text-white font-2xl font-bold text-center"> Login </Text>
                 </TouchableOpacity>
             </View>
         </View>

@@ -14,7 +14,7 @@ export default function SignUpScreen() {
       }, []);
 
     return (
-        <ScrollView className="flex-1 bg-white" style={{backgroundColor: '#3EB489'}}>
+        <ScrollView className="flex-1 bg-white" style={{backgroundColor: '#75BAA4'}}>
             <SafeAreaView className="flex">
                 <View className="flex-row justify-start">
                     <TouchableOpacity 
