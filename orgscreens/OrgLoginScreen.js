@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native'
 import { ChevronLeftIcon } from 'react-native-heroicons/solid'
 
-export default function LoginScreen() {
+export default function OrgLogin() {
     const navigation = useNavigation();
 
     useLayoutEffect(() => {
@@ -12,8 +12,8 @@ export default function LoginScreen() {
           headerShown: false,
         });
       }, []);
-
-    return (
+    
+      return (
         <View className="flex-1 bg-white" style={{backgroundColor: '#75BAA4'}}>
             <SafeAreaView className="flex">
                 <View className="flex-row justify-start">
@@ -25,7 +25,7 @@ export default function LoginScreen() {
                 </View>
                 <View className="flex-row justify-center">
                     <Image source={require("../assets/clothing-donation.png")}
-                            style={{width:150, height: 150}}/>
+                            style={{width:200, height: 200}}/>
                 </View>
             </SafeAreaView>
             <KeyboardAvoidingView 
@@ -34,6 +34,7 @@ export default function LoginScreen() {
                 keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}
                 style={{borderTopLeftRadius: 50, borderTopRightRadius: 50}}>
                 <View className="form space-y-2">
+                    <Text className="text-xl font-semibold"> Organization Account </Text>
                     <Text className="text-gray-700 ml-4"> Email Address </Text>
                     <TextInput 
                     className="p-4 bg-gray-200 text-gray-700 rounded-2xl mb-3" 
@@ -42,31 +43,16 @@ export default function LoginScreen() {
                     <Text className="text-gray-700 ml-4"> Password </Text>
                     <TextInput 
                         className="p-4 bg-gray-200 text-gray-700 rounded-2xl mb-3" 
-                        secureTextEntry
+                        secureTextEntry={true}
                         //placeholder='Enter password'
                     />
                 </View>
-                <View className="flex-row items-center mt-2">
-                    <View className="flex-1 h-0.5 bg-gray-300" />
-                    <Text className="text-center text-base mx-2"> Or </Text>
-                    <View className="flex-1 h-0.5 bg-gray-300" />
-                </View>
-                <TouchableOpacity onPress={() => navigation.navigate('OrgLogin')}
-                    className="flex items-center mt-5 mb-5">
-                    <Text className="text-black text-lg font-bold"> Login to Organization Account </Text>
-                </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('TabScreen')}
-                    className="mt-4 py-3 rounded-2xl" style={{backgroundColor: '#38517E'}}>
-                    <Text className="text-xl text-white font-bold text-center"> Login </Text>
+                    className="mt-4 py-4 rounded-xl" style={{backgroundColor: '#38517E'}}>
+                    <Text className="text-white font-2xl font-bold text-center"> Login </Text>
                 </TouchableOpacity>
-                <View className="flex-row justify-center items-center mt-3">
-                    <Text className="text-black font-2xl mt-2"> Not a user? </Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('SignUp')}
-                        className="mt-2">
-                        <Text className="text-black font-2xl font-bold"> Sign up here. </Text>
-                    </TouchableOpacity>
-                </View>
-            </KeyboardAvoidingView>
+                </KeyboardAvoidingView>
         </View>
     )
 }
+

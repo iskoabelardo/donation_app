@@ -35,7 +35,6 @@ const WelcomeScreen = () => {
             </Text>
           </TouchableOpacity>
         </View>
-
       </View>
     </SafeAreaView>
   );

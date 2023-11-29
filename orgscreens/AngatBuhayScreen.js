@@ -25,9 +25,9 @@ const AngatBuhay = () => {
                     <View className="flex-1 flex justify-center items-center px-4 py-4">
                         <Text className="text-3xl font-bold text-black text-center mt-5 mb-5">Angat Buhay</Text>
                         <Image 
-                            source={require("../orgscreens/Angat_Buhay_logo1.png")} // Replace with your image URL
+                            source={require("../assets/Angat_Buhay_logo.png")} // Replace with your image URL
                             className="w-36 h-20" // Tailwind CSS styling for width and height
-                            resizeMode="contain" // or "cover", depending on your preference
+                            resizeMode="cover" // or "cover", depending on your preference
                         />
                         <Text className="text-black mt-3 text-justify">
                             Angat Buhay is a non-government organization that inspires hope and bayanihan by harnessing the energies of partners, volunteers, and supporters to empower Filipino communities, especially the marginalized.

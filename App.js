@@ -9,6 +9,7 @@ import SignUpScreen from './screens/SignUpScreen';
 import TabScreen from './screens/TabScreen';
 import DonationScreen from './screens/DonationScreen';
 import NotificationScreen from './screens/NotificationScreen';
+import OrgLogin from './orgscreens/OrgLoginScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,7 +27,7 @@ export default function App() {
             options={{ headerShown: false }}
           />
           {/* <Stack.Screen name="Donation" component={DonationScreen}/> */}
-          <Stack.Screen name="Notif" component={NotificationScreen}/>
+          <Stack.Screen name="OrgLogin" component={OrgLogin} />
         </Stack.Navigator>
       </TailwindProvider>
     </NavigationContainer>

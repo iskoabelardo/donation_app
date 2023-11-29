@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from 'react'
-import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native'
+import { View, Text, TouchableOpacity, Image, TextInput, Settings } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { HomeIcon, UserIcon} from 'react-native-heroicons/solid'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -9,9 +9,11 @@ import Profile from '../tabs/Profile';
 import DonationScreen from '../screens/DonationScreen';
 import NotificationScreen from '../screens/NotificationScreen';
 import OrgOptions from '../screens/OrganizationOptions';
-import AngatBuhay from './orgscreens/AngatBuhayScreen';
-import SegundaMana from './orgscreens/SegundaMana';
-import RedCross from './orgscreens/PhRedCross';
+import SettingScreen from '../screens/SettingScreen';
+import AngatBuhay from '../orgscreens/AngatBuhayScreen';
+import SegundaMana from '../orgscreens/SegundaMana';
+import RedCross from '../orgscreens/PhRedCross';
+import EditProfile from '../screens/EditProfileScreen';
 
 // Import other screens here if needed
 
@@ -34,6 +36,13 @@ const Tabs = () => {
           <HomeIcon size={30}color={focused ? '#75BAA4' : '#C3C5C8'} /> 
         ),
       }}/>
+      <Tab.Screen name="Profile" 
+        component={Profile} 
+        options={{
+        tabBarIcon: ({ focused }) => (
+          <UserIcon size={30}color={focused ? '#75BAA4' : '#C3C5C8'} /> 
+        ),
+      }}/>
       <Tab.Screen 
         name="Donation" 
         component={DonationScreen} 
@@ -43,6 +52,18 @@ const Tabs = () => {
       <Tab.Screen 
         name="Notif" 
         component={NotificationScreen}
+        options={{
+          tabBarButton: () => <View/> // Hides the tab bar icon for this tab
+        }}/>
+      <Tab.Screen 
+        name="Settings" 
+        component={SettingScreen} 
+        options={{
+          tabBarButton: () => <View/> // Hides the tab bar icon for this tab
+        }}/>
+      <Tab.Screen 
+        name="EditProfile" 
+        component={EditProfile} 
         options={{
           tabBarButton: () => <View/> // Hides the tab bar icon for this tab
         }}/>
@@ -70,13 +91,6 @@ const Tabs = () => {
         options={{
           tabBarButton: () => <View/> // Hides the tab bar icon for this tab
         }}/>
-      <Tab.Screen name="Profile" 
-        component={Profile} 
-        options={{
-        tabBarIcon: ({ focused }) => (
-          <UserIcon size={30}color={focused ? '#75BAA4' : '#C3C5C8'} /> 
-        ),
-      }}/>
     </Tab.Navigator>
   );
 }

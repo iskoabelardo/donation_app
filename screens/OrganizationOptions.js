@@ -55,7 +55,7 @@ const OrgOptions = () => {
             className="w-28 h-24 mr-5" // adjust your image size as needed
           />
         )}
-        <Text className="text-lg font-bold">{item.name}</Text>
+        <Text className="text-lg font-semibold">{item.name}</Text>
       </TouchableOpacity>
     </View>
   );  
