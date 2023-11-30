@@ -75,7 +75,6 @@ const OrgOptions = () => {
                 data={organizations}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
-                className=""
             />
         </SafeAreaView>
     </View>

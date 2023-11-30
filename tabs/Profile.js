@@ -7,26 +7,44 @@ import { BellIcon, Cog6ToothIcon } from 'react-native-heroicons/outline';
 
 const Profile = () => {
   const navigation = useNavigation();
-  
+
+  const users = [
+    {
+      userImage: require("../assets/iu_bonnet.jpg"), 
+      inputName: "Angelo Abelardo",
+      location: "Cainta Rizal",
+      key: '1', // Unique key for the user
+    },
+    // Add more user objects as needed
+  ];
+
   const donationInfo = [
     {
-      title: "Rough Shirt 1",
-      description: "Lorem ipsum dolor sit amet, consectetur",
+      selectedImage: require("../assets/black_tshirt.png"),
+      itemName: "Rough Shirt 1",
+      itemDescription: "Pre-loved TShirt\n Medium\n Black",
+      location: "Quezon City",
       key: '1', // Unique key for this item
     },
     {
-      title: "Rough Shirt 2",
-      description: "Lorem ipsum dolor sit amet, consectetur",
+      selectedImage: require("../assets/black_tshirt.png"),
+      itemName: "Rough Shirt 2",
+      itemDescription: "Pre-loved TShirt\n Medium\n Black",
+      location: "Quezon City",
       key: '2',
     },
     {
-      title: "Rough Shirt 3",
-      description: "Lorem ipsum dolor sit amet, consectetur",
+      selectedImage: require("../assets/black_tshirt.png"),
+      itemName: "Rough Shirt 3",
+      itemDescription: "Pre-loved TShirt\n Medium\n Black",
+      location: "Quezon City",
       key: '3',
     },
     {
-      title: "Rough Shirt 4",
-      description: "Lorem ipsum dolor sit amet, consectetur",
+      selectedImage: require("../assets/black_tshirt.png"),
+      itemName: "Rough Shirt 4",
+      itemDescription: "Pre-loved TShirt\n Medium\n Black",
+      location: "Quezon City",
       key: '4',
     },
   ];
@@ -34,11 +52,15 @@ const Profile = () => {
     <View className=" flex-1 relative bg-white" style={{backgroundColor: '#75BAA4'}}>
       <SafeAreaView style={{backgroundColor: '#90A09B'}}>
         <View className="flex-row justify-between ml-5 mt-3 mr-3 mb-3">
-          <View className="mt-7">
-            <Image source={require("../assets/iu_bonnet.jpg")}
-            className="h-24 w-24 rounded-full"/>
-            <Text className="text-3xl font-bold mt-2">Isko Abelardo</Text>
-            <Text className="text-base"> Cainta Rizal </Text>
+          <View className="mt-8">
+          {users.map((user) => (
+            <View key={user.key}>
+              <Image source={user.userImage} 
+              className="h-24 w-24 rounded-full"/>
+              <Text className="text-3xl font-bold mt-2"> {user.inputName} </Text>
+              <Text className="text-base"> {user.location} </Text>
+            </View>
+            ))}
           </View>
           {/* Icons */}
           <View className="flex-row">
@@ -70,13 +92,14 @@ const Profile = () => {
             <View className="flex-row flex-wrap justify-between py-1 px-3">
               <View className="bg-white rounded-lg mb-4 w-40 shadow-lg">
                 <Image
-                  source={require("../assets/iu_bonnet.jpg")}
-                  className="h-36 w-full mb-2 rounded-lg"
-                  resizeMode="cover"
+                  source={item.selectedImage}
+                  className="h-24 w-full mb-2 rounded-lg"
+                  resizeMode="contain"
                 />
                 <View className="px-3 py-2">
-                  <Text className="text-lg font-bold"> {item.title} </Text>
-                  <Text className="text-sm text-gray-500"> {item.description} </Text>
+                  <Text className="text-lg font-bold"> {item.itemName} </Text>
+                  <Text className="text-sm text-gray-500"> {item.itemDescription} </Text>
+                  <Text className="text-sm text-gray-500"> {item.location} </Text>
                   <TouchableOpacity className="mt-2 mb-2 bg-red-500 rounded px-4 py-1">
                     <Text className="text-white text-center"> Delete </Text>
                   </TouchableOpacity>

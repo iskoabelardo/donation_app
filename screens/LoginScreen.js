@@ -56,7 +56,7 @@ export default function LoginScreen() {
                     <Text className="text-black text-lg font-bold"> Login to Organization Account </Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('TabScreen')}
-                    className="mt-4 py-3 rounded-2xl" style={{backgroundColor: '#38517E'}}>
+                    className="mt-2 py-3 rounded-2xl" style={{backgroundColor: '#38517E'}}>
                     <Text className="text-xl text-white font-bold text-center"> Login </Text>
                 </TouchableOpacity>
                 <View className="flex-row justify-center items-center mt-3">

@@ -6,7 +6,7 @@ import { ChevronLeftIcon } from 'react-native-heroicons/solid';
 import { BellIcon } from 'react-native-heroicons/outline'
 import { QuestionMarkCircleIcon, HeartIcon, TruckIcon } from 'react-native-heroicons/outline'
 
-const Home = () => {
+export default function Home() {
   
   const navigation = useNavigation();
 
@@ -79,9 +79,9 @@ const Home = () => {
               <View className="flex-row flex-wrap">
               {categories.map((category, index) => (
                 <View key={index} className="w-1/4">
-                  <TouchableOpacity className="items-center p-4 rounded-lg">
+                  <View className="items-center p-4 rounded-lg">
                     <Image source={category.icon} className="h-8 w-8" />
-                  </TouchableOpacity>
+                  </View>
                   <Text className="text-center mt-2">{category.label}</Text>
                 </View>
               ))}
@@ -90,5 +90,3 @@ const Home = () => {
     </ScrollView>
   );
 };
-
-export default Home;

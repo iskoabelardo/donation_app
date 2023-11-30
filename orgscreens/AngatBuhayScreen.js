@@ -26,8 +26,8 @@ const AngatBuhay = () => {
                         <Text className="text-3xl font-bold text-black text-center mt-5 mb-5">Angat Buhay</Text>
                         <Image 
                             source={require("../assets/Angat_Buhay_logo.png")} // Replace with your image URL
-                            className="w-36 h-20" // Tailwind CSS styling for width and height
-                            resizeMode="cover" // or "cover", depending on your preference
+                            className="w-36 h-24" // Tailwind CSS styling for width and height
+                            resizeMode="contain" // or "cover", depending on your preference
                         />
                         <Text className="text-black mt-3 text-justify">
                             Angat Buhay is a non-government organization that inspires hope and bayanihan by harnessing the energies of partners, volunteers, and supporters to empower Filipino communities, especially the marginalized.
@@ -36,7 +36,6 @@ const AngatBuhay = () => {
                             Following the people's campaign of former Vice President Leni Robredo in 2022, Angat Buhay traces its roots as a government program under the Office of the Vice President of the Philippines that had several successful initiatives and projects.
                         </Text>
                     </View>
-                {/* Donate button */}
                 <View className="mt-8">
                     <TouchableOpacity 
                     onPress={() => navigation.navigate('Donation')}

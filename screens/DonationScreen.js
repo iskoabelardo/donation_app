@@ -25,6 +25,7 @@ export default function DonationScreen() {
     { label: 'Pick Up', value: 'pickup' },
     { label: 'Drop Off', value: 'dropoff' }
   ];
+  
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -54,9 +55,13 @@ export default function DonationScreen() {
               <View className="flex-1 p-4">
                 <TouchableOpacity 
                   onPress={pickImage}
-                  className="border-dashed border-2 border-gray-300 rounded-md p-12 flex items-center justify-center">
+                  className="border-dashed border-2 border-gray-300 rounded-md p-4 flex items-center justify-center"
+                  style={{ width: '100%', height: 250 }}>
                   {selectedImage ? (
-                    <Image source={{ uri: selectedImage }} style={{ width: 100, height: 100 }} />
+                    <Image 
+                      source={{ uri: selectedImage }} 
+                      style={{ width: '100%', height: 250 }} 
+                      resizeMode="contain"/>
                       ) : (
                       <>
                       <CameraIcon size={30} color="gray" />

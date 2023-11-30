@@ -18,8 +18,10 @@ export default function SignUpScreen() {
     const [inputName, setInputName] = useState('');
     const [inputEmail, setInputEmail] = useState('');
     const [inputNumber, setInputNumber] = useState('');
+    const [inputLocation, setLocation] = useState('');
     const [inputPassword, setInputPassword] = useState('')
     const [inputConfirmPassword, setInputConfirmPassword] = useState('')
+
 
     const handleChange = ({input, type}) => {
         if (type === 'name'){
@@ -28,17 +30,18 @@ export default function SignUpScreen() {
           setInputEmail(input)
         } else if (type === 'mobile_number'){
           setInputNumber(input)
+        } else if (type === 'location'){
+          setLocation(input)
         } else if (type === 'password'){
           setInputPassword(input)
         } else if (type === 'confirm_password'){
           setInputConfirmPassword(input)
         }
-
       }
 
     const handleSignup = () => {
         try {
-          if (inputName.trim() === '' || inputEmail.trim() === '' || inputNumber.trim() === '' || inputPassword.trim() === '' ||
+          if (inputName.trim() === '' || inputEmail.trim() === '' || inputNumber.trim() === '' || inputLocation.trim() === '' || inputPassword.trim() === '' ||
                 inputConfirmPassword.trim() === '') {
               
             showMessage({
@@ -116,6 +119,13 @@ export default function SignUpScreen() {
                                 value = {inputNumber} 
                                 onChangeText={(text)=>handleChange({input: text, type: 'mobile_number'})}
                                 />
+                            <Text className="text-gray-700 ml-4"> Location </Text>
+                            <TextInput 
+                                className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3" 
+                                placeholder='Enter location'
+                                value = {inputLocation} 
+                                onChangeText={(text)=>handleChange({input: text, type: 'location'})}
+                                />                            
                             <Text className="text-gray-700 ml-4"> Password </Text>
                             <TextInput 
                                 className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3" 

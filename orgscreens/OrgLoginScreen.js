@@ -12,7 +12,8 @@ export default function OrgLogin() {
           headerShown: false,
         });
       }, []);
-    
+
+      
       return (
         <View className="flex-1 bg-white" style={{backgroundColor: '#75BAA4'}}>
             <SafeAreaView className="flex">
@@ -47,7 +48,7 @@ export default function OrgLogin() {
                         //placeholder='Enter password'
                     />
                 </View>
-                <TouchableOpacity onPress={() => navigation.navigate('TabScreen')}
+                <TouchableOpacity onPress={() => navigation.navigate('OrgTabScreen')}
                     className="mt-4 py-4 rounded-xl" style={{backgroundColor: '#38517E'}}>
                     <Text className="text-white font-2xl font-bold text-center"> Login </Text>
                 </TouchableOpacity>

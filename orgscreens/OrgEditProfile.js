@@ -7,7 +7,7 @@ import { useState } from 'react'
 import * as ImagePicker from 'expo-image-picker';
 
 
-export default EditProfile = () => {
+export default OrgEditProfile = () => {
     const navigation = useNavigation();
 
     const [inputName, setInputName] = useState('');
@@ -68,10 +68,10 @@ export default EditProfile = () => {
                     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
                     keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}>
                     <View className="form space-y-2">
-                        <Text className="text-gray-700 ml-4"> Full Name </Text>
+                        <Text className="text-gray-700 ml-4"> Organizational Name </Text>
                             <TextInput 
                                 className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3" 
-                                placeholder='Change full name'
+                                placeholder='Change organizational name'
                                 value = {inputName} 
                                 onChangeText={(text)=>handleChange({input: text, type: 'name'})}
                             />
