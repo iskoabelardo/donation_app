@@ -10,12 +10,12 @@ export default function OrgProfile() {
     const orgDetails = [
         {
           label: 'NGO Name:',
-          value: 'Angat Buhay',
+          value: 'Philippine Red Cross',
           key: '1',
         },
         {
           label: 'Email:',
-          value: 'angat@buhay.com',
+          value: 'phredcross@gmail.com',
           key: '2',
         },
         {
@@ -38,7 +38,7 @@ export default function OrgProfile() {
             </View>
             <View className="flex justify-center items-center mt-2 mb-3">
                 <TouchableOpacity className="mt-7">
-                    <Image source={require("../assets/Angat_Buhay_logo.png")}
+                    <Image source={require("../assets/red_cross_logo.png")}
                         className="h-24 w-36 rounded-xl"
                         resizeMode="contain"/>
                 </TouchableOpacity>
