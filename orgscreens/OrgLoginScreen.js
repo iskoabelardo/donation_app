@@ -49,8 +49,8 @@ export default function OrgLogin() {
                     />
                 </View>
                 <TouchableOpacity onPress={() => navigation.navigate('OrgTabScreen')}
-                    className="mt-4 py-4 rounded-xl" style={{backgroundColor: '#38517E'}}>
-                    <Text className="text-white font-2xl font-bold text-center"> Login </Text>
+                    className="mt-5 py-3 rounded-2xl" style={{backgroundColor: '#38517E'}}>
+                    <Text className="text-white text-xl font-bold text-center"> Login </Text>
                 </TouchableOpacity>
                 </KeyboardAvoidingView>
         </View>

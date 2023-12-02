@@ -97,6 +97,21 @@ export default function SignUpScreen() {
                     <View 
                         className="flex-1 bg-white px-8 pt-8 pb-8"
                         style={{borderTopLeftRadius: 50, borderTopRightRadius: 50}}>
+                      <View className="mb-4 justify-center items-center">
+                        <View className="flex-row justify-around items-center">
+                          <TouchableOpacity 
+                            // onPress={handleDonatorsAccountPress}
+                            className="py-3 px-5 rounded-2xl" style={{backgroundColor: '#38517E'}}>
+                            <Text className="text-white text-base font-bold text-center"> Donator </Text>
+                          </TouchableOpacity>
+                          <Text className="text-center text-base mx-2"> Or </Text>
+                          <TouchableOpacity 
+                            // onPress={handleOrgAccountPress}
+                            className="py-3 px-5 rounded-2xl" style={{backgroundColor: '#000000'}}>
+                            <Text className="text-white text-base font-bold text-center"> Organization </Text>
+                          </TouchableOpacity>
+                        </View>
+                      </View>
                         <View className="form space-y-3">
                             <Text className="text-gray-700 ml-4"> Full Name </Text>
                             <TextInput 

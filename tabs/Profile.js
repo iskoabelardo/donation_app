@@ -94,15 +94,11 @@ const Profile = () => {
                 <Image
                   source={item.selectedImage}
                   className="h-24 w-full mb-2 rounded-lg"
-                  resizeMode="contain"
-                />
+                  resizeMode="contain"/>
                 <View className="px-3 py-2">
                   <Text className="text-lg font-bold"> {item.itemName} </Text>
                   <Text className="text-sm text-gray-500"> {item.itemDescription} </Text>
                   <Text className="text-sm text-gray-500"> {item.location} </Text>
-                  <TouchableOpacity className="mt-2 mb-2 bg-red-500 rounded px-4 py-1">
-                    <Text className="text-white text-center"> Delete </Text>
-                  </TouchableOpacity>
                 </View>
               </View>
             </View>
