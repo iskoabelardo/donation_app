@@ -1,22 +1,52 @@
 import { View, Text, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { ChevronLeftIcon } from 'react-native-heroicons/solid';
 import { BellIcon, Cog6ToothIcon } from 'react-native-heroicons/outline';
+import { useFocusEffect } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Profile = () => {
   const navigation = useNavigation();
 
+  const [name, setName] = useState('')
+  const [location, setLocation] = useState('')
+  const [id, setId] = useState('')
+
   const users = [
     {
       userImage: require("../assets/iu_bonnet.jpg"), 
-      inputName: "Angelo Abelardo",
-      location: "Cainta Rizal",
-      key: '1', // Unique key for the user
+      inputName: name,
+      location: location,
+      key: id, // Unique key for the user
     },
     // Add more user objects as needed
   ];
+
+  useFocusEffect(
+    React.useCallback(() => {
+        const fetchData = async () => {
+        try {
+            // Your asynchronous code goes here
+            const user = await AsyncStorage.getItem('user-session');
+            const userData = JSON.parse(user);
+            console.log(userData)
+            
+            if (userData !== null){
+              setId(userData.id)
+              setName(userData.name);
+              setLocation(userData.location);
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+        };
+
+        fetchData();
+
+    }, [])
+);
 
   const donationInfo = [
     {
