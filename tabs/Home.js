@@ -67,7 +67,7 @@ export default function Home() {
 
           <View className="mt-2">
             <TouchableOpacity 
-            onPress={() => navigation.navigate('OrganizationOptions')}
+            onPress={() => navigation.navigate('Donation')}
             className="py-3 mx-3 rounded-xl" style={{backgroundColor: '#38517E'}}>
               <Text className="text-xl font-bold text-center text-white">
                 Donate to An Organization

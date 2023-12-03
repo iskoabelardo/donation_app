@@ -10,9 +10,6 @@ import DonationScreen from '../screens/DonationScreen';
 import NotificationScreen from '../screens/NotificationScreen';
 import OrgOptions from '../screens/OrganizationOptions';
 import SettingScreen from '../screens/SettingScreen';
-import AngatBuhay from '../orgscreens/AngatBuhayScreen';
-import SegundaMana from '../orgscreens/SegundaMana';
-import RedCross from '../orgscreens/PhRedCross';
 import EditProfile from '../screens/EditProfileScreen';
 
 // Import other screens here if needed
@@ -70,24 +67,6 @@ const Tabs = () => {
       <Tab.Screen 
         name="OrganizationOptions" 
         component={OrgOptions}
-        options={{
-          tabBarButton: () => <View/> // Hides the tab bar icon for this tab
-        }}/>
-      <Tab.Screen 
-        name="AngatBuhay" 
-        component={AngatBuhay}
-        options={{
-          tabBarButton: () => <View/> // Hides the tab bar icon for this tab
-        }}/>
-      <Tab.Screen 
-        name="SegundaMana" 
-        component={SegundaMana}
-        options={{
-          tabBarButton: () => <View/> // Hides the tab bar icon for this tab
-        }}/>
-      <Tab.Screen 
-        name="RedCross" 
-        component={RedCross}
         options={{
           tabBarButton: () => <View/> // Hides the tab bar icon for this tab
         }}/>
