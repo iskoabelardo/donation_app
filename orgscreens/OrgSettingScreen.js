@@ -3,6 +3,7 @@ import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { ChevronLeftIcon } from 'react-native-heroicons/solid';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const OrgSettingScreen = () => {
     const navigation = useNavigation();
@@ -14,6 +15,17 @@ const OrgSettingScreen = () => {
             <Text className="text-lg font-semibold"> {title} </Text>
         </TouchableOpacity>
     );
+
+    const handleLogout = async () => {
+    
+        try {
+          await AsyncStorage.removeItem('user-session')
+        } catch(error) {
+          console.error('Error fetching data:', error);
+        }
+    
+        navigation.navigate('Welcome')
+    }
 
     return(
         <View className="flex-1 bg-gray" style={{backgroundColor: '#75BAA4'}}>
@@ -30,7 +42,7 @@ const OrgSettingScreen = () => {
                 </View>
                 <View className="px-4 py-4">
                     <SettingButton title="Edit Profile" onPress={() => navigation.navigate('OrgEditProfile')} />
-                    <SettingButton title="Logout" onPress={() => navigation.navigate('Welcome')} />
+                    <SettingButton title="Logout" onPress={handleLogout} />
                 </View>
             </SafeAreaView>
         </View>
