@@ -4,7 +4,9 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native'
 import { ChevronLeftIcon } from 'react-native-heroicons/solid'
 import { useState } from 'react'
-import { showMessage, hideMessage } from "react-native-flash-message";
+
+import { db } from '../Firebase'; 
+import { addDoc, collection } from 'firebase/firestore';
 
 export default function SignUpScreen() {
     const navigation = useNavigation();
@@ -21,6 +23,8 @@ export default function SignUpScreen() {
     const [inputLocation, setLocation] = useState('');
     const [inputPassword, setInputPassword] = useState('')
     const [inputConfirmPassword, setInputConfirmPassword] = useState('')
+
+    const [inputType, setInputType] = useState('donator');
 
 
     const handleChange = ({input, type}) => {
@@ -39,37 +43,55 @@ export default function SignUpScreen() {
         }
       }
 
+    const handleTypeChange = ({type}) => {
+        if (type === 'donator' ) {
+          setInputType('donator');
+          console.log(inputType);
+        } else if (type === 'organization'){
+          setInputType('organization');
+          console.log(inputType);
+        }
+    }
+
     const handleSignup = () => {
         try {
           if (inputName.trim() === '' || inputEmail.trim() === '' || inputNumber.trim() === '' || inputLocation.trim() === '' || inputPassword.trim() === '' ||
                 inputConfirmPassword.trim() === '') {
-              
-            showMessage({
-              message: "Invalid Input: Please fill in all fields.",
-              type: "danger",
-            });
-    
+
+            console.log('Error: Empty Fields');
             return;
-            }
+
+          }
+
           if (inputPassword.trim() !== inputConfirmPassword.trim() ) {
 
-            showMessage({
-            message: "Invalid Input: Password does not match!",
-            type: "danger",
-            });
-    
+            console.log("Error: Password Mismatch");
             return;
-            }
-            navigation.replace('Login');
+
+          } 
+
+          const userRef = collection(db, 'users');
+
+          // Set the user data in the document
+          addDoc(userRef, {
+            "name": inputName,
+            "email": inputEmail,
+            "number": inputNumber,
+            "location": inputLocation,
+            "password": inputPassword,
+            'type': inputType
+          });
+
+          console.log("Success: Created New Account")
+          navigation.replace('Login');
+
         }
 
         catch (error) {
-            showMessage({
-              message: error.message,
-              type: "danger",
-            });
+            console.log(error.message)
           }
-    }
+        }
+  
 
     return (
         <KeyboardAvoidingView 
@@ -100,14 +122,14 @@ export default function SignUpScreen() {
                       <View className="mb-4 justify-center items-center">
                         <View className="flex-row justify-around items-center">
                           <TouchableOpacity 
-                            // onPress={handleDonatorsAccountPress}
-                            className="py-3 px-5 rounded-2xl" style={{backgroundColor: '#38517E'}}>
+                            onPress={() => handleTypeChange({type: 'donator'})}
+                            className="py-3 px-5 rounded-2xl" style={{backgroundColor: inputType === 'donator' ? '#38517E' : '#38517E50'}}>
                             <Text className="text-white text-base font-bold text-center"> Donator </Text>
                           </TouchableOpacity>
                           <Text className="text-center text-base mx-2"> Or </Text>
                           <TouchableOpacity 
-                            // onPress={handleOrgAccountPress}
-                            className="py-3 px-5 rounded-2xl" style={{backgroundColor: '#000000'}}>
+                            onPress={() => handleTypeChange({type: 'organization'})}
+                            className="py-3 px-5 rounded-2xl" style={{backgroundColor: inputType === 'organization' ? '#38517E' : '#38517E50'}}>
                             <Text className="text-white text-base font-bold text-center"> Organization </Text>
                           </TouchableOpacity>
                         </View>
