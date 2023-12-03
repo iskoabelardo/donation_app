@@ -1,11 +1,14 @@
 import { View, Text, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { ChevronLeftIcon } from 'react-native-heroicons/solid';
 import { BellIcon, Cog6ToothIcon } from 'react-native-heroicons/outline';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { donationFiles, db } from '../Firebase';
+import { ref, getDownloadURL } from "firebase/storage";
+import { addDoc, collection, serverTimestamp, doc, query, where, getDocs, refEqual, getDoc  } from 'firebase/firestore';
 
 const Profile = () => {
   const navigation = useNavigation();
@@ -24,60 +27,74 @@ const Profile = () => {
     // Add more user objects as needed
   ];
 
+  const [imageUrl, setImageUrl] = useState(null);
+
+  const loadDonationImage = (path) => {
+    return new Promise((resolve, reject) => {
+      getDownloadURL(ref(donationFiles, path))
+        .then((url) => {
+          resolve(url);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
+
+  const [donationInfo, setDonationInfo] = useState([])
+
   useFocusEffect(
     React.useCallback(() => {
         const fetchData = async () => {
-        try {
-            // Your asynchronous code goes here
-            const user = await AsyncStorage.getItem('user-session');
-            const userData = JSON.parse(user);
-            console.log(userData)
+          try {
+              // Your asynchronous code goes here
+              const user = await AsyncStorage.getItem('user-session');
+              const userData = JSON.parse(user);
+              
+              if (userData !== null){
+                setId(userData.id)
+                setName(userData.name);
+                setLocation(userData.location);
+              }
+
+              const q = query(collection(db, 'donations'), where('donator', '==', userData.id));
+              const querysnapshot = await getDocs(q)
+              
+              const imageUrls = await Promise.all(
+                querysnapshot.docs.map(async (doc) => {
+                  const path = doc.data().file_name;
+                  try {
+                    return await loadDonationImage(path);
+                  } catch (error) {
+                    console.error(`Error loading image for ${path}:`, error);
+                    return null; // or handle the error in a different way
+                  }
+                })
+              );
             
-            if (userData !== null){
-              setId(userData.id)
-              setName(userData.name);
-              setLocation(userData.location);
-            }
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
+              console.log('Image URLs:', imageUrls);
+            
+              const donations = querysnapshot.docs.map((doc, index) => ({
+                selectedImage: imageUrls[index],
+                itemName: doc.data().item_name,
+                itemDescription: doc.data().item_desc,
+                location: doc.data().location,
+              }));
+
+              setDonationInfo(donations)
+
+              console.log(donations)
+
+          } catch (error) {
+              console.error('Error fetching data:', error);
+          }
         };
 
         fetchData();
 
-    }, [])
-);
+      }, [])
+  );
 
-  const donationInfo = [
-    {
-      selectedImage: require("../assets/black_tshirt.png"),
-      itemName: "Rough Shirt 1",
-      itemDescription: "Pre-loved TShirt\n Medium\n Black",
-      location: "Quezon City",
-      key: '1', // Unique key for this item
-    },
-    {
-      selectedImage: require("../assets/black_tshirt.png"),
-      itemName: "Rough Shirt 2",
-      itemDescription: "Pre-loved TShirt\n Medium\n Black",
-      location: "Quezon City",
-      key: '2',
-    },
-    {
-      selectedImage: require("../assets/black_tshirt.png"),
-      itemName: "Rough Shirt 3",
-      itemDescription: "Pre-loved TShirt\n Medium\n Black",
-      location: "Quezon City",
-      key: '3',
-    },
-    {
-      selectedImage: require("../assets/black_tshirt.png"),
-      itemName: "Rough Shirt 4",
-      itemDescription: "Pre-loved TShirt\n Medium\n Black",
-      location: "Quezon City",
-      key: '4',
-    },
-  ];
   return (
     <View className=" flex-1 relative bg-white" style={{backgroundColor: '#75BAA4'}}>
       <SafeAreaView style={{backgroundColor: '#90A09B'}}>
@@ -122,7 +139,7 @@ const Profile = () => {
             <View className="flex-row flex-wrap justify-between py-1 px-3">
               <View className="bg-white rounded-lg mb-4 w-40 shadow-lg">
                 <Image
-                  source={item.selectedImage}
+                  source={{ uri: item.selectedImage }}
                   className="h-24 w-full mb-2 rounded-lg"
                   resizeMode="contain"/>
                 <View className="px-3 py-2">
