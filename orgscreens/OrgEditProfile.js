@@ -4,8 +4,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { ChevronLeftIcon } from 'react-native-heroicons/solid';
 import { useState } from 'react'
+import { useFocusEffect } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { setDoc, doc } from 'firebase/firestore';
+import { db } from '../Firebase'; 
 
 export default OrgEditProfile = () => {
     const navigation = useNavigation();
@@ -13,8 +16,9 @@ export default OrgEditProfile = () => {
     const [inputName, setInputName] = useState('');
     const [inputEmail, setInputEmail] = useState('');
     const [inputNumber, setInputNumber] = useState('');
-    const [inputLocation, setLocation] = useState('');
+    const [inputLocation, setInputLocation] = useState('');
     const [inputPassword, setInputPassword] = useState('')
+    const [inputConfirmPassword, setInputConfirmPassword] = useState('')
 
     const handleChange = ({input, type}) => {
         if (type === 'name'){
@@ -24,13 +28,79 @@ export default OrgEditProfile = () => {
         } else if (type === 'mobile_number'){
           setInputNumber(input)
         } else if (type === 'location'){
-          setLocation(input)
+          setInputLocation(input)
         } else if (type === 'password'){
           setInputPassword(input)
         } else if (type === 'confirm_password'){
           setInputConfirmPassword(input)
         }
       }
+
+    useFocusEffect(
+        React.useCallback(() => {
+            const fetchData = async () => {
+            try {
+                // Your asynchronous code goes here
+                const user = await AsyncStorage.getItem('user-session');
+                const userData = JSON.parse(user);
+                console.log(userData)
+                if (userData !== null){
+                if ( inputName === '' || inputEmail === '' || inputNumber === '' || inputLocation === '' || inputPassword === '') {
+                    setInputName(userData.name)
+                    setInputEmail(userData.email)
+                    setInputNumber(userData.number)
+                    setInputLocation(userData.location)
+                }
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+            };
+
+            fetchData();
+
+        }, [])
+    );
+
+    const handleEdit = () => {
+          
+        const setAccountInfo = async () => {
+        try {
+            
+            const user = await AsyncStorage.getItem('user-session');
+            const userData = JSON.parse(user);
+
+            if (userData !== null && inputPassword === inputConfirmPassword){
+                await setDoc(doc(db, "users", userData.id), {
+                    "name": inputName,
+                    "email": inputEmail,
+                    "number": inputNumber,
+                    "location": inputLocation,
+                    "password": inputPassword === '' ? userData.password : inputPassword,
+                    "type": userData.type
+                });
+
+                await AsyncStorage.setItem('user-session', JSON.stringify({
+                    "id": userData.id,
+                    "name": inputName,
+                    "email": inputEmail,
+                    "number": inputNumber,
+                    "location": inputLocation,
+                    "password": inputPassword === '' ? userData.password : inputPassword,
+                    "type": userData.type
+                })
+                );
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+        };
+
+        setAccountInfo();
+        
+        navigation.goBack()
+
+    }
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -104,8 +174,16 @@ export default OrgEditProfile = () => {
                                 value = {inputPassword} 
                                 onChangeText={(text)=>handleChange({input: text, type: 'password'})}
                             />
+                        <Text className="text-gray-700 ml-4"> Confirm Password </Text>
+                            <TextInput 
+                                className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3" 
+                                secureTextEntry={true}
+                                placeholder='Confirm new password'
+                                value = {inputConfirmPassword} 
+                                onChangeText={(text)=>handleChange({input: text, type: 'confirm_password'})}
+                            />    
                         </View>
-                        <TouchableOpacity onPress={() => {}}
+                        <TouchableOpacity onPress={handleEdit}
                             className="mt-2 mb-4 py-3 rounded-2xl" style={{backgroundColor: '#38517E'}}>
                             <Text className="text-xl text-white font-bold text-center"> Save </Text>
                         </TouchableOpacity>
