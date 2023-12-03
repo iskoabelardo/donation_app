@@ -1,11 +1,69 @@
 import { View, Text, TouchableOpacity, Image, TextInput, KeyboardAvoidingView } from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native'
 import { ChevronLeftIcon } from 'react-native-heroicons/solid'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { db } from '../Firebase'; 
+import { getDocs, query, collection, where } from 'firebase/firestore';
 
 export default function LoginScreen() {
     const navigation = useNavigation();
+
+    const [inputEmail, setInputEmail] = useState('')
+    const [inputPassword, setInputPassword] = useState('')
+
+    const handleChange = ({input,type}) => {
+        if (type === 'email'){
+        setInputEmail(input)
+        } else if (type === 'password'){
+        setInputPassword(input)
+        } 
+    }
+
+    const handleLogin = async () => {
+        try {
+
+            const q = query(collection(db, 'users'), where('email', '==', inputEmail));
+            const querySnapshot = await getDocs(q);
+
+            if (!querySnapshot.empty) {
+                const userDoc = querySnapshot.docs[0];
+                const userData = userDoc.data();
+
+                if (userData.password === inputPassword && userData.type === 'donator') {
+                    
+                    await AsyncStorage.setItem('user-session', JSON.stringify({
+                        "id": userDoc.id,
+                        "email": userData.email,
+                        "password": userData.password,
+                        "name": userData.name,
+                        "number": userData.number,
+                        "location": userData.location,
+                        "type": userData.type
+                    })
+                    );
+                    
+                    navigation.navigate('TabScreen')
+
+                } else {
+
+                    console.log("Invalid Credentials: Please check your email and password.");
+
+                }
+
+            } else {
+
+                console.log("User Not Found: Please check your username and try again.");
+
+            }
+
+        } catch (error) {
+
+            console.log(error.message);
+            
+        }
+    };
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -36,13 +94,17 @@ export default function LoginScreen() {
                 <View className="form space-y-2">
                     <Text className="text-gray-700 ml-4"> Email Address </Text>
                     <TextInput 
-                    className="p-4 bg-gray-200 text-gray-700 rounded-2xl mb-3" 
-                    //placeholder='Enter email'
+                        className="p-4 bg-gray-200 text-gray-700 rounded-2xl mb-3" 
+                        value = {inputEmail} 
+                        onChangeText={(text)=>handleChange({input: text, type: 'email'})}
+                        //placeholder='Enter email'
                     />
                     <Text className="text-gray-700 ml-4"> Password </Text>
                     <TextInput 
                         className="p-4 bg-gray-200 text-gray-700 rounded-2xl mb-3" 
                         secureTextEntry
+                        value = {inputPassword} 
+                        onChangeText={(text)=>handleChange({input: text, type: 'password'})}
                         //placeholder='Enter password'
                     />
                 </View>
@@ -55,7 +117,7 @@ export default function LoginScreen() {
                     className="flex items-center mt-5 mb-5">
                     <Text className="text-black text-lg font-bold"> Login to Organization Account </Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('TabScreen')}
+                <TouchableOpacity onPress={handleLogin}
                     className="mt-2 py-3 rounded-2xl" style={{backgroundColor: '#38517E'}}>
                     <Text className="text-xl text-white font-bold text-center"> Login </Text>
                 </TouchableOpacity>
