@@ -29,21 +29,21 @@ To use our Mobile Application, here is a detailed step by step:
  - `git clone` https://github.com/iskoabelardo/donation_app/
 2. Switch to the 'fully_working' Branch:
  - After cloning, switch to the directory of the cloned repository by using the command:
- - `cd` donation_app/donation_project
- - Then, switch to the branch named "fully_working" by executing:
- - `git checkout` fully_working
+  - `cd` donation_app/donation_project
+  - Then, switch to the branch named "fully_working" by executing:
+  - `git checkout` fully_working
 3. Install Dependencies:
  - In the same terminal, install the required npm packages by running:
- - `npm install`
+  - `npm install`
 4. Start the Expo Project:
  - Once the installation is complete, start the Expo project by running:
- - `npx expo start`
+  - `npx expo start`
 5. Running on a Simulator or Physical Device:
- - To run the app on an iOS simulator or Android emulator, ensure that you have Xcode or Android Studio installed on your computer, respectively.
- - Alternatively, to run the app on a physical device, download the Expo Go app from the App Store or Google Play Store on your mobile device.
- - Connect to the same Wi-Fi network as your computer and scan the QR code provided by the Expo developer tools using the Expo Go app.
+  - To run the app on an iOS simulator or Android emulator, ensure that you have Xcode or Android Studio installed on your computer, respectively.
+  - Alternatively, to run the app on a physical device, download the Expo Go app from the App Store or Google Play Store on your mobile device.
+  - Connect to the same Wi-Fi network as your computer and scan the QR code provided by the Expo developer tools using the Expo Go app.
 6. Viewing the Application:
- - Once the application is running on your chosen platform (simulator, emulator, or physical device), you can navigate through the app to review its functionality.
+  - Once the application is running on your chosen platform (simulator, emulator, or physical device), you can navigate through the app to review its functionality.
 
 Note: 
  - Remember to read the project's README.md file if available, as it may contain specific instructions or requirements for the project. Additionally, ensure you have Node.js installed on your computer to use npm and npx commands.
