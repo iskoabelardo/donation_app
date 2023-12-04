@@ -19,14 +19,13 @@ The application was built using React Native for cross-platform mobile developme
 <div align="justify">
 To use our Mobile Application, here is a detailed step by step:
 <br>
-Clone the Repository:
-<br>
-Open Visual Studio Code (VSCode).
-<br>
-Access the integrated terminal by going to Terminal > New Terminal from the top menu or using the shortcut `Ctrl+`` (backtick).
-<br>
-In the terminal, enter the following command to clone the repository:
-<br>
-`git clone` https://github.com/iskoabelardo/donation_app/
+1. Clone the Repository:
+ - Open Visual Studio Code (VSCode).
+
+ - Access the integrated terminal by going to Terminal > New Terminal from the top menu or using the shortcut `Ctrl+`` (backtick).
+
+ - In the terminal, enter the following command to clone the repository:
+
+ -`git clone` https://github.com/iskoabelardo/donation_app/
 <br>
 </div>
