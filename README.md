@@ -26,6 +26,6 @@ To use our Mobile Application, here is a detailed step by step:
 
  - In the terminal, enter the following command to clone the repository:
 
- -`git clone` https://github.com/iskoabelardo/donation_app/
+  `git clone` https://github.com/iskoabelardo/donation_app/
 <br>
 </div>
