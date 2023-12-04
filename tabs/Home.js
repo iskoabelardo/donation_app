@@ -26,11 +26,11 @@ export default function Home() {
     <ScrollView className=" flex-1 relative bg-white" style={{backgroundColor: '#75BAA4'}}>
         <SafeAreaView>
               <View className="flex-row justify-end ml-2 mt-3 mr-3">
-                  <TouchableOpacity 
+                  {/* <TouchableOpacity 
                     onPress={() => navigation.navigate('Notif')}
                     className="p-2 ml-4">
                     <BellIcon size="30" color="black"/>
-                  </TouchableOpacity>
+                  </TouchableOpacity> */}
               </View>
           </SafeAreaView>
           <View className="p-5">

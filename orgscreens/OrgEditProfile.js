@@ -126,13 +126,13 @@ export default OrgEditProfile = () => {
                 <View className="ml-4 mt-3"> 
                     <Text className="text-3xl font-bold mt-2"> Edit Profile </Text>
                 </View>
-                <View className="flex justify-center items-center mt-3 mb-3">
+                {/* <View className="flex justify-center items-center mt-3 mb-3">
                     <TouchableOpacity className="mt-7">
                         <Image source={require("../assets/iu_bonnet.jpg")}
                             className="h-24 w-24 rounded-full"/>
                     </TouchableOpacity>
                     <Text className="mt-2 text-base"> Change photo </Text>
-                </View>
+                </View> */}
                 <KeyboardAvoidingView 
                     className="flex-1 px-8 pt-8"
                     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}

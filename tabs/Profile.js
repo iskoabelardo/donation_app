@@ -19,7 +19,7 @@ const Profile = () => {
 
   const users = [
     {
-      userImage: require("../assets/iu_bonnet.jpg"), 
+      userImage: require("../assets/1.png"), 
       inputName: name,
       location: location,
       key: id, // Unique key for the user
@@ -105,17 +105,17 @@ const Profile = () => {
               <Image source={user.userImage} 
               className="h-24 w-24 rounded-full"/>
               <Text className="text-3xl font-bold mt-2"> {user.inputName} </Text>
-              <Text className="text-base"> {user.location} </Text>
+              <Text className="text-lg"> {user.location} </Text>
             </View>
             ))}
           </View>
           {/* Icons */}
           <View className="flex-row">
-            <TouchableOpacity 
+            {/* <TouchableOpacity 
               onPress={() => navigation.navigate('Notif')}
               className="p-2">
               <BellIcon size={30} color="black" />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity 
               onPress={() => navigation.navigate('Settings')} 
               className="p-2">
@@ -125,7 +125,7 @@ const Profile = () => {
         </View>
       </SafeAreaView>
       <FlatList
-        data={donationInfo} // data source
+        data={donationInfo}
         keyExtractor={(item, index) => index.toString()}
         contentContainerStyle="flex-1 px-2 pt-2"
         numColumns={2}
@@ -140,12 +140,16 @@ const Profile = () => {
               <View className="bg-white rounded-lg mb-4 w-40 shadow-lg">
                 <Image
                   source={{ uri: item.selectedImage }}
-                  className="h-24 w-full mb-2 rounded-lg"
-                  resizeMode="contain"/>
-                <View className="px-3 py-2">
-                  <Text className="text-lg font-bold"> {item.itemName} </Text>
-                  <Text className="text-sm text-gray-500"> {item.itemDescription} </Text>
-                  <Text className="text-sm text-gray-500"> {item.location} </Text>
+                  className="h-36 w-full rounded-t-lg"
+                  resizeMode="cover"/>
+                <View className="px-2 py-2">
+                  <View className="items-center">
+                    <Text className="text-lg font-bold"> {item.itemName} </Text>
+                  </View>
+                  <View className="flex-start ml-1">
+                    <Text className="text-sm text-gray-500 mb-1"> {item.itemDescription} </Text>
+                    <Text className="text-sm text-gray-500"> {item.location} </Text>
+                  </View>
                 </View>
               </View>
             </View>

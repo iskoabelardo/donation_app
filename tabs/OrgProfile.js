@@ -71,9 +71,9 @@ export default function OrgProfile() {
             </View>
             <View className="flex justify-center items-center mt-2 mb-3">
                 <TouchableOpacity className="mt-7">
-                    <Image source={require("../assets/red_cross_logo.png")}
-                        className="h-24 w-36 rounded-xl"
-                        resizeMode="contain"/>
+                    <Image source={require("../assets/2.png")}
+                        className="h-24 w-24 rounded-full"
+                        resizeMode="cover"/>
                 </TouchableOpacity>
             </View>
             <View className="flex px-4 py-4">

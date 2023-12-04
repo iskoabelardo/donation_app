@@ -124,9 +124,16 @@ export default function DonationScreen() {
 
           });
 
-        navigation.goBack()
-
-
+          setIsOpen(false);
+          setOpen(false)
+          setItemName('');
+          setItemDescription('');
+          setLocation('');
+          setSelectedOrg(null);
+          setCurrentValue(null);
+          setSelectedImage(null);
+          navigation.goBack()  
+          
       } catch(error) {
         console.log(error.message)
       }

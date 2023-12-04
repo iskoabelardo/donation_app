@@ -16,7 +16,7 @@ export default function OrgHome() {
     const [location, setLocation] = useState('')
     const [id, setId] = useState('')
 
-    const userImage = require("../assets/red_cross_logo.png");
+    const userImage = require("../assets/2.png");
       
     const loadDonationImage = (path) => {
     return new Promise((resolve, reject) => {
@@ -92,7 +92,7 @@ export default function OrgHome() {
             <Image 
             source={{uri: item.userImage}} 
             style={{ height: 144, width: 144, borderRadius: 8 }} // Adjust size as needed
-            resizeMode="contain"
+            resizeMode="cover"
             />
             <View className="flex-1 ml-4">
             <Text className="text-lg font-bold"> {item.itemName} </Text>
@@ -111,7 +111,7 @@ export default function OrgHome() {
                         <Image 
                         source={userImage} 
                         className="h-24 w-24 rounded-full"
-                        resizeMode="contain"/>
+                        resizeMode="cover"/>
                         <Text className="text-3xl font-bold mt-2"> {name} </Text>
                         <Text className="text-base"> {location} </Text>
                     </View>
