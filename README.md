@@ -34,7 +34,7 @@ To use our Mobile Application, here is a detailed step by step:
    - `git checkout` fully_working
 3. Install Dependencies:
  - In the same terminal, install the required npm packages by running:
-   - `npm install`
+   - `npm install` or `npm ci` to clean install the packages
 4. Start the Expo Project:
  - Once the installation is complete, start the Expo project by running:
    - `npx expo start`
