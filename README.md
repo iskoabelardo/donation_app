@@ -40,8 +40,8 @@ To use our Mobile Application, here is a detailed step by step:
    - `npx expo start`
 5. Running on a Simulator or Physical Device:
  - To run the app on an iOS simulator or Android emulator, ensure that you have Xcode or Android Studio installed on your computer, respectively.
-   - Alternatively, to run the app on a physical device, download the Expo Go app from the App Store or Google Play Store on your mobile device.
-   - Connect to the same Wi-Fi network as your computer and scan the QR code provided by the Expo developer tools using the Expo Go app.
+ - Alternatively, to run the app on a physical device, download the Expo Go app from the App Store or Google Play Store on your mobile device.
+ - Connect to the same Wi-Fi network as your computer and scan the QR code provided by the Expo developer tools using the Expo Go app.
 6. Viewing the Application:
   - Once the application is running on your chosen platform (simulator, emulator, or physical device), you can navigate through the app to review its functionality.
 
